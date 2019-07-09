@@ -1,6 +1,3 @@
-// ArmyLightAndDarkness.cpp: определяет точку входа для консольного приложения.
-//
-
 #include "stdafx.h"
 #include <iostream>
 #include <vector>
@@ -137,23 +134,31 @@ public:
 
 class Legolas : virtual public Heal, virtual public Bowman
 {
+	
 	Bow bow;
 	Heal heal;
 public:
+	static int num;
+	void Number()
+	{
+		num++;
+		(num < 2) ? std::cout << "Legolas " << std::endl : std::cout << "enemyLegolas " << std::endl;
+	}
 	virtual void Shut()override
 	{
-		std::cout << "Legolas" << std::endl;
+		Number();
 		bow.Shut();
 	}
 
 	virtual void TreatAndHack()override
 	{
-		std::cout << "Legolas" << std::endl;
+		Number();
 		heal.TreatAndHack();
 	}
 	virtual ~Legolas() {}
 };
 
+int Legolas::num = 0;
 class Aragorn : virtual public Warior, virtual public Bowman, virtual public Cavaler
 {
 	Sword sword;
@@ -161,127 +166,142 @@ class Aragorn : virtual public Warior, virtual public Bowman, virtual public Cav
 	Horse horse;
 	Spear spear;
 public:
+	  static int num;
+	  void Number()
+	  {
+		  num++;
+		  (num < 2) ? std::cout << "Aragorn " << std::endl : std::cout << "enemyAragorn " << std::endl;
+	  }
 	virtual void Cut() override
-	{
-		std::cout << "Aragorn" << std::endl;
+	{ 
+		Number();
 		sword.Cut();
 	}
 	virtual void Shut()override
 	{
-		std::cout << "Aragorn" << std::endl;
+		Number();
 		bow.Shut();
 
 	}
 	virtual void Beat() override
 	{
-		std::cout << "Aragorn" << std::endl;
+		Number();
 		horse.Go();
 		spear.Beat();
 	}
 	virtual ~Aragorn() {}
 };
 
+int Aragorn::num = 0;
 class Gendolf : virtual public Heal, virtual public Cavaler
 {
+	
 	Aye aye;
 	Vitamine vitamine;
 	Horse horse;
 	Spear spear;
 public:
+	static int num;
+	void Number()
+	{
+		num++;
+		(num < 3) ? (std::cout << "Gendolf " <<  std::endl) : std::cout << "enemyGendolf " << std::endl;
+	}
 	virtual void TreatAndHack() override
 	{
-		std::cout << "Gendolf" << std::endl;
+		Number();
 		aye.Hack();
 		vitamine.Treat();
 	}
 	virtual void Beat() override
 	{
-		std::cout << "Gendolf" << std::endl;
+		Number();
 		horse.Go();
 		spear.Beat();
 	}
 	virtual ~Gendolf() {}
 };
+int Gendolf::num = 0;
+//
+//class enemyLegolas : virtual public Heal, virtual public Bowman
+//{
+//	Bow bow;
+//	Heal heal;
+//public:
+//	virtual void Shut()override
+//	{
+//		std::cout << "enemyLegolas" << std::endl;
+//		bow.Shut();
+//	}
+//
+//	virtual void TreatAndHack()override
+//	{
+//		std::cout << "enemyLegolas" << std::endl;
+//		heal.TreatAndHack();
+//	}
+//	virtual ~enemyLegolas() {}
+//};
+//
+//class enemyAragorn : virtual public Warior, virtual public Bowman, virtual public Cavaler
+//{
+//	Sword sword;
+//	Bow bow;
+//	Horse horse;
+//	Spear spear;
+//public:
+//	virtual void Cut() override
+//	{
+//		std::cout << "enemyAragorn" << std::endl;
+//		sword.Cut();
+//	}
+//	virtual void Shut()override
+//	{
+//		std::cout << "enemyAragorn" << std::endl;
+//		bow.Shut();
+//
+//	}
+//	virtual void Beat() override
+//	{
+//		std::cout << "enemyAragorn" << std::endl;
+//		horse.Go();
+//		spear.Beat();
+//	}
+//	virtual ~enemyAragorn() {}
+//};
+//
+//class enemyGendolf : virtual public Heal, virtual public Cavaler
+//{
+//	Aye aye;
+//	Vitamine vitamine;
+//	Horse horse;
+//	Spear spear;
+//public:
+//	virtual void TreatAndHack() override
+//	{
+//		std::cout << "enemyGendolf" << std::endl;
+//		aye.Hack();
+//		vitamine.Treat();
+//	}
+//	virtual void Beat() override
+//	{
+//		std::cout << "enemyGendolf" << std::endl;
+//		horse.Go();
+//		spear.Beat();
+//	}
+//	virtual ~enemyGendolf() {}
+//};
 
-class enemyLegolas : virtual public Heal, virtual public Bowman
-{
-	Bow bow;
-	Heal heal;
-public:
-	virtual void Shut()override
-	{
-		std::cout << "enemyLegolas" << std::endl;
-		bow.Shut();
-	}
-
-	virtual void TreatAndHack()override
-	{
-		std::cout << "enemyLegolas" << std::endl;
-		heal.TreatAndHack();
-	}
-	virtual ~enemyLegolas() {}
-};
-
-class enemyAragorn : virtual public Warior, virtual public Bowman, virtual public Cavaler
-{
-	Sword sword;
-	Bow bow;
-	Horse horse;
-	Spear spear;
-public:
-	virtual void Cut() override
-	{
-		std::cout << "enemyAragorn" << std::endl;
-		sword.Cut();
-	}
-	virtual void Shut()override
-	{
-		std::cout << "enemyAragorn" << std::endl;
-		bow.Shut();
-
-	}
-	virtual void Beat() override
-	{
-		std::cout << "enemyAragorn" << std::endl;
-		horse.Go();
-		spear.Beat();
-	}
-	virtual ~enemyAragorn() {}
-};
-
-class enemyGendolf : virtual public Heal, virtual public Cavaler
-{
-	Aye aye;
-	Vitamine vitamine;
-	Horse horse;
-	Spear spear;
-public:
-	virtual void TreatAndHack() override
-	{
-		std::cout << "enemyGendolf" << std::endl;
-		aye.Hack();
-		vitamine.Treat();
-	}
-	virtual void Beat() override
-	{
-		std::cout << "enemyGendolf" << std::endl;
-		horse.Go();
-		spear.Beat();
-	}
-	virtual ~enemyGendolf() {}
-};
-
-class ArmyFactory
+class IArmyFactory
 {
 public:
 	virtual IWarior* createWarior() = 0;
 	virtual IBowman* createBowman() = 0;
 	virtual ICavaler* createCavaler() = 0;
 	virtual IHeal* createHeal() = 0;
-	virtual ~ArmyFactory() {}
+	virtual ~IArmyFactory() {}
 };
 
-class ALightArmyFactory : public ArmyFactory
+class ArmyFactory : public IArmyFactory
 {
 public:
 	IWarior* createWarior() override
@@ -305,29 +325,29 @@ public:
 	}
 };
 
-class ADarknesstArmyFactory : public ArmyFactory
-{
-public:
-	IWarior* createWarior() override
-	{
-		return new enemyAragorn;
-	}
-
-	IBowman* createBowman() override
-	{
-		return new enemyLegolas;
-	}
-
-	ICavaler* createCavaler() override
-	{
-		return new enemyGendolf;
-	}
-
-	IHeal* createHeal() override
-	{
-		return new enemyGendolf;
-	}
-};
+//class ADarknesstArmyFactory : public IArmyFactory
+//{
+//public:
+//	IWarior* createWarior() override
+//	{
+//		return new enemyAragorn;
+//	}
+//
+//	IBowman* createBowman() override
+//	{
+//		return new enemyLegolas;
+//	}
+//
+//	ICavaler* createCavaler() override
+//	{
+//		return new enemyGendolf;
+//	}
+//
+//	IHeal* createHeal() override
+//	{
+//		return new enemyGendolf;
+//	}
+//};
 
 class Army
 {
@@ -341,10 +361,19 @@ public:
 		for (i = 0; i<m_c.size(); ++i)  delete m_c[i];
 	}
 
-	void info()
+	void infoLight()
 	{
 		int i;
-		for (i = 0; i < m_w.size(); ++i)  m_w[i]->Cut;
+		for (i = 0; i < m_w.size(); ++i)  m_w[i]->Cut();
+		for (i = 0; i < m_b.size(); ++i)  m_b[i]->Shut();
+		for (i = 0; i < m_h.size(); ++i)  m_h[i]->TreatAndHack();
+		for (i = 0; i < m_c.size(); ++i)  m_c[i]->Beat();
+	}
+
+	void infoDarkness()
+	{
+		int i;
+		for (i = 0; i < m_w.size(); ++i)  m_w[i]->Cut();
 		for (i = 0; i < m_b.size(); ++i)  m_b[i]->Shut();
 		for (i = 0; i < m_h.size(); ++i)  m_h[i]->TreatAndHack();
 		for (i = 0; i < m_c.size(); ++i)  m_c[i]->Beat();
@@ -359,7 +388,7 @@ public:
 class Game
 {
 public:
-	Army* createArmy(ArmyFactory& factory)
+	Army* createArmy(IArmyFactory& factory)
 	{
 		Army *army = new Army;
 		army->m_w.push_back(factory.createWarior());
@@ -373,8 +402,9 @@ public:
 int main()
 {
 	Game game;
-	ALightArmyFactory al_factory;
-	ADarknesstArmyFactory ad_factory;
+	ArmyFactory al_factory;
+	ArmyFactory ad_factory;
+	//ADarknesstArmyFactory ad_factory;
 	/*Aragorn aragorn;
 	enemyAragorn enemy;
 	Army * A = game.createArmy(aragorn);*/
@@ -382,9 +412,9 @@ int main()
 	Army* al = game.createArmy(al_factory);
 	Army* ad = game.createArmy(ad_factory);
 	std::cout << "Army Light: " << std::endl;
-	al->info();
+	al->infoLight();
 	std::cout << "\nArmy Darkness: " << std::endl;
-	ad->info();
+	ad->infoDarkness();
 	system("pause");
 	return 0;
 }

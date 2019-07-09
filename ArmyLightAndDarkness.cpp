@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include <iostream>
 #include <vector>
+#include <thread>
+#include <functional>
 
 class IWarior
 {
@@ -399,6 +401,7 @@ public:
 	}
 };
 
+
 int main()
 {
 	Game game;
@@ -411,10 +414,19 @@ int main()
 
 	Army* al = game.createArmy(al_factory);
 	Army* ad = game.createArmy(ad_factory);
-	std::cout << "Army Light: " << std::endl;
-	al->infoLight();
-	std::cout << "\nArmy Darkness: " << std::endl;
-	ad->infoDarkness();
+	
+	std::thread t1([&al]() {
+		std::this_thread::sleep_for(std::chrono::milliseconds(300));
+		std::cout << "Army Light: " << std::endl;
+	al->infoLight(); });
+
+	std::thread t2([&ad]() {
+		std::this_thread::sleep_for(std::chrono::milliseconds(200));
+		std::cout << "\nArmy Darkness: " << std::endl;
+	ad->infoDarkness();});
+	
+	t1.join();
+	t2.join();
 	system("pause");
 	return 0;
 }
